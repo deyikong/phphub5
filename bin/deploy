@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
+
+. "${ROOT}"/bin/lib/exitCheck.sh
+
+IMAGE="us.gcr.io/raven-185914/api-prod"
+MOCK_IMAGE="us.gcr.io/raven-185914/api-mock-server"
+SHA="`git rev-parse HEAD`"
+
+echo ""
+echo "Changing to Project root.."
+cd "$ROOT"
+exitCheck $?
+
+echo ""
+echo "Getting deployment environment"
+mv .env.deploy .env
+exitCheck $?
+
+echo ""
+echo "Installing Composer dependencies..."
+composer install --no-dev
+exitCheck $?
+
+echo ""
+echo "Installing NPM dependencies..."
+npm install
+exitCheck $?
+
+echo ""
+echo "Building production Docker web image..."
+docker build . -f docker/web-prod/Dockerfile -t ${IMAGE}
+exitCheck $?
+docker tag ${IMAGE} ${IMAGE}:${SHA}
+exitCheck $?
+
+echo ""
+echo "Pushing production web image to Google Container Registry..."
+docker push ${IMAGE}:${SHA}
+exitCheck $?
+
+echo ""
+echo "Building mock server image..."
+docker build raml -f raml/Dockerfile -t ${MOCK_IMAGE}
+exitCheck $?
+docker tag ${MOCK_IMAGE} ${MOCK_IMAGE}:${SHA}
+exitCheck $?
+
+echo ""
+echo "Pushing mock server image to Google Container Registry..."
+docker push ${MOCK_IMAGE}:${SHA}
+exitCheck $?
+
+echo ""
+echo "Activating configuartion"
+gcloud config configurations activate raven
+exitCheck $?
+
+echo ""
+echo "Deploying application to Google App Engine"
+gcloud --quiet app deploy google/api.yaml --image-url=${IMAGE}:${SHA}
+exitCheck $?
+
+echo ""
+echo "Running migrations"
+php-deploy artisan migrate --force --no-interaction -vv
+exitCheck $?
+
+echo ""
+echo "Deploying mock server to Google App Engine"
+gcloud --quiet app deploy google/mock.yaml --image-url=${MOCK_IMAGE}:${SHA}
+exitCheck $?
+
+echo ""
+echo "Deploying new docs"
+git clone -b gh-pages "$CIRCLE_REPOSITORY_URL" docs
+exitCheck $?
+doc
+exitCheck $?
+cd docs
+exitCheck $?
+git add -A
+git commit -m "📚 Updated docs $(date --iso-8601=seconds)"
+git push origin gh-pages
+exitCheck $?
+
+## Should we also push cloud functions? They won't change often.

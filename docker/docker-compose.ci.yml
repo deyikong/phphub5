@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  api:
+    environment:
+      CIRCLECI: ${CIRCLECI}
+  db:
+    volumes:
+      - /mnt/ramdisk:/var/lib/mysql

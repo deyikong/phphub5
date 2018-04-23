@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
+cd "$ROOT"
+
+if [ ! -d docs ]; then
+    git clone -b gh-pages git@github.com:Medology/api.raven.com.git docs
+fi
+
+./bin/node ./node_modules/.bin/api-console generate-json raml/api.raml --output docs/api.json

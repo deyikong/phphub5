@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
+WORKING_DIR="$ROOT"
+
+. "${ROOT}/.env"
+. "${ROOT}"/bin/lib/env.sh
+. "${ROOT}"/docker/lib/docker_host_user_id.sh
+. "${ROOT}"/docker/lib/images.sh
+. "${ROOT}"/docker/lib/args.sh
+. "${ROOT}"/bin/lib/rm.sh
+. "${ROOT}"/bin/lib/tty.sh
+
+docker run \
+       -e LOCAL_USER_ID=$DOCKER_HOST_USER_ID \
+       -e MASHAPE_API_KEY=$MASHAPE_API_KEY \
+       -e CIRCLECI=${CIRCLECI} \
+       -i$TTY $RM \
+       --env-file <(env | grep IDE_) \
+       --env-file "$ROOT/docker/.env" \
+       -v "$ROOT":"$ROOT" \
+       ${VOLUMES} \
+       -v ~/.ssh:/home/user/.ssh \
+       -v ~/.composer:/home/user/.composer \
+       -w "$ROOT" \
+       --net ${PROJECT_NAME}_default \
+       --link api:api.raven.local \
+       -p 4343:4343 \
+       --link datastore:ds.raven.local \
+       $PHP_IMAGE php "${ARGS[@]}"

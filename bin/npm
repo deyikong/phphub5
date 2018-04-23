@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
+
+. "${ROOT}"/bin/lib/env.sh
+. "${ROOT}"/docker/lib/docker_host_user_id.sh
+. "${ROOT}"/docker/lib/images.sh
+. "${ROOT}"/bin/lib/rm.sh
+. "${ROOT}"/bin/lib/tty.sh
+
+docker run \
+       -i$TTY $RM \
+       --env-file "$ROOT/docker/.env" \
+       -v "$(pwd)":/workdir \
+       -v ~/.npm:/root/.npm \
+       -w /workdir \
+       "${NODE_IMAGE}" npm "$@"
