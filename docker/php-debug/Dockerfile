@@ -1,5 +1,5 @@
 # deyikong/php-debug:2018-04-23
-FROM us.gcr.io/raven-185914/api-php:2017-12-08
+FROM deyikong/php:2018-04-23
 
 COPY xdebug.ini /tmp
 

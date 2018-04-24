@@ -1,13 +1,10 @@
 # deyikong/php:2018-04-23
-FROM php:7.2
+FROM chekote/php:7.1.16-laravel5.6
 
 RUN apt-get update && \
-
     apt-get install --no-install-recommends --no-install-suggests -y \
-
         # phpunit requirements
         php${PHP_VERSION}-dom \
-
         # raven requirements
         php${PHP_VERSION}-mysql \
         imagemagick \
@@ -19,13 +16,10 @@ RUN apt-get update && \
         php${PHP_VERSION}-pgsql \
         php${PHP_VERSION}-redis \
         php-imagick \
-
         # memcache requirements
         memcached php${PHP_VERSION}-memcached \
-
         # Intrepreter for the PostScript language and for PDF
         ghostscript && \
-
     # Cleanup
     apt-get remove -y && \
     apt-get autoremove -y && \

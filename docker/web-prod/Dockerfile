@@ -1,5 +1,5 @@
-# us.gcr.io/raven-185914/api-web-prod
-FROM us.gcr.io/raven-185914/api-web:2018-01-10
+# deyikong/web-prod:2018-04-23
+FROM deyikong/web:2018-04-23
 
 # supervisord needs to be started by the root user
 ENV LOCAL_USER_ID 0

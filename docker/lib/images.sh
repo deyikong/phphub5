@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# export CLOUD_HOST=us.gcr.io
+export CLOUD_ACCOUNT=chinese_forum
+
+# export PHP_HOST=$CLOUD_HOST
 export PHP_ACCOUNT=deyikong
 export PHP_REPO=php
 export PHP_TAG=2018-04-23
@@ -10,11 +14,10 @@ export PHP_DEBUG_REPO=php-debug
 export PHP_DEBUG_TAG=2018-04-23
 export PHP_DEBUG_IMAGE=${PHP_DEBUG_ACCOUNT}/${PHP_DEBUG_REPO}:${PHP_DEBUG_TAG}
 
-export WEB_HOST=$CLOUD_HOST
-export WEB_ACCOUNT=$CLOUD_ACCOUNT
-export WEB_REPO=api-web
-export WEB_TAG=2018-01-10
-export WEB_IMAGE=${WEB_HOST}/${WEB_ACCOUNT}/${WEB_REPO}:${WEB_TAG}
+export WEB_ACCOUNT=$PHP_ACCOUNT
+export WEB_REPO=web
+export WEB_TAG=2018-04-23
+export WEB_IMAGE=${WEB_ACCOUNT}/${WEB_REPO}:${WEB_TAG}
 
 export MYSQL_REPO=mysql
 export MYSQL_TAG=5.7.20
@@ -28,4 +31,9 @@ export SED_REPO=alpine
 export SED_TAG=edge
 export SED_IMAGE=${SED_REPO}:${SED_TAG}
 
+# export DATASTORE_HOST=$CLOUD_HOST
+export DATASTORE_ACCOUNT=$PHP_ACCOUNT
+export DATASTORE_REPO=datastore
+export DATASTORE_TAG=2018-04-23
+export DATASTORE_IMAGE=${DATASTORE_ACCOUNT}/${DATASTORE_REPO}:${DATASTORE_TAG}
 

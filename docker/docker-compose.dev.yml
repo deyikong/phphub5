@@ -1,9 +1,9 @@
 version: '2'
 
 services:
-  api:
+  web:
     ports:
-      - 80:80
+      - 81:80
     extra_hosts:
       - "phpstorm:${PHPSTORM_HOST_IP}"
 

@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  api:
+  web:
     image: $WEB_IMAGE
     volumes:
       - ..:/var/www
@@ -19,7 +19,7 @@ services:
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ravenlocal
+      MYSQL_DATABASE: chinese-forum
 
   datastore:
     image: $DATASTORE_IMAGE
