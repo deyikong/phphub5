@@ -1,5 +1,5 @@
-# deyikong/web:2018-04-23
-FROM ubuntu:16.04
+# deyikong/web:2018-04-25
+FROM deyikong/php:2018-04-23
 
 RUN apt-get update && \
     apt-get install --no-install-recommends --no-install-suggests -y \
@@ -17,7 +17,6 @@ RUN apt-get update && \
 ADD supervisor/php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
 ADD supervisor/nginx.conf /etc/supervisor/conf.d/nginx.conf
 ADD nginx.conf /etc/nginx/sites-available/default
-
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www

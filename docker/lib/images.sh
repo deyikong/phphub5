@@ -3,10 +3,13 @@
 # export CLOUD_HOST=us.gcr.io
 export CLOUD_ACCOUNT=chinese_forum
 
-# export PHP_HOST=$CLOUD_HOST
+#export PHP_HOST=$CLOUD_HOST
 export PHP_ACCOUNT=deyikong
 export PHP_REPO=php
 export PHP_TAG=2018-04-23
+#export PHP_ACCOUNT=chekote
+#export PHP_REPO=php
+#export PHP_TAG=7.1.16-laravel5.6
 export PHP_IMAGE=${PHP_ACCOUNT}/${PHP_REPO}:${PHP_TAG}
 
 export PHP_DEBUG_ACCOUNT=$PHP_ACCOUNT
@@ -16,12 +19,16 @@ export PHP_DEBUG_IMAGE=${PHP_DEBUG_ACCOUNT}/${PHP_DEBUG_REPO}:${PHP_DEBUG_TAG}
 
 export WEB_ACCOUNT=$PHP_ACCOUNT
 export WEB_REPO=web
-export WEB_TAG=2018-04-23
+export WEB_TAG=2018-04-25
 export WEB_IMAGE=${WEB_ACCOUNT}/${WEB_REPO}:${WEB_TAG}
 
 export MYSQL_REPO=mysql
 export MYSQL_TAG=5.7.20
 export MYSQL_IMAGE=${MYSQL_REPO}:${MYSQL_TAG}
+
+export REDIS_REPO=redis
+export REDIS_TAG=4.0
+export REDIS_IMAGE=${REDIS_REPO}:${REDIS_TAG}
 
 export NODE_REPO=node
 export NODE_TAG=9.2.0

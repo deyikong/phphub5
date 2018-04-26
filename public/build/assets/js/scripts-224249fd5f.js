@@ -5404,7 +5404,7 @@ var QRCode;!function(){function t(t){this.mode=l.MODE_8BIT_BYTE,this.data=t,this
          */
         initEmoji: function(){
             emojify.setConfig({
-                img_dir : Config.cdnDomain + 'assets/images/emoji',
+                img_dir : Config.cdnDomain + '/assets/images/emoji',
                 ignored_tags : {
                     'SCRIPT'  : 1,
                     'TEXTAREA': 1,
@@ -5424,7 +5424,7 @@ var QRCode;!function(){function t(t){this.mode=l.MODE_8BIT_BYTE,this.data=t,this
                         }));
                     },
                     template: function (value) {
-                        return '<img src="' + Config.cdnDomain + 'assets/images/emoji/' + value + '.png"></img>' + value;
+                        return '<img src="' + Config.cdnDomain + '/assets/images/emoji/' + value + '.png"></img>' + value;
                     },
                     replace: function (value) {
                         return ':' + value + ': ';

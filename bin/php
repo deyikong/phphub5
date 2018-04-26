@@ -13,7 +13,6 @@ WORKING_DIR="$ROOT"
 
 docker run \
        -e LOCAL_USER_ID=$DOCKER_HOST_USER_ID \
-       -e CIRCLECI=${CIRCLECI} \
        -i$TTY $RM \
        --env-file <(env | grep IDE_) \
        --env-file "$ROOT/docker/.env" \
@@ -23,7 +22,7 @@ docker run \
        -v ~/.composer:/home/user/.composer \
        -w "$ROOT" \
        --net ${PROJECT_NAME}_default \
-       --link web:phphub5.app \
+       --link web:localhost:81 \
        -p 4343:4343 \
        --link datastore:ds.raven.local \
        $PHP_IMAGE php "${ARGS[@]}"

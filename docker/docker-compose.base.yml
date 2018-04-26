@@ -3,16 +3,21 @@ version: '2'
 services:
   web:
     image: $WEB_IMAGE
+    env_file: .env
     volumes:
       - ..:/var/www
     environment:
-      LOCAL_USER_ID: 0
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - LOCAL_USER_ID=0
     depends_on:
       - db
       - datastore
+      - redis
     links:
       - db
       - datastore
+      - redis
 
   db:
     image: $MYSQL_IMAGE
@@ -20,6 +25,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: chinese-forum
+
+  redis:
+    image: $REDIS_IMAGE
+    ports:
+      - 6379:6379
+    env_file: .env
+    environment:
+      REDIS_PASSWORD: null
+      REDIS_PORT: 6379
+    links:
+      - db
 
   datastore:
     image: $DATASTORE_IMAGE

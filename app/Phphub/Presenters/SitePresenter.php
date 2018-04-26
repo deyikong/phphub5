@@ -17,7 +17,7 @@ class SitePresenter extends Presenter
     {
         // dd($this);
         if (!$this->favicon) {
-            return cdn('assets/images/emoji/arrow_right.png');
+            return cdn('/assets/images/emoji/arrow_right.png');
         }
 
         $path = 'uploads/sites/' . $this->favicon;

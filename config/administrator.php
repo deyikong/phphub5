@@ -87,7 +87,7 @@ return array(
      * @type closure
      */
     'permission' => function () {
-        if (App::environment('local')) {
+        if (env('APP_ENV') == 'local') {
             if (!Auth::check()) {
                 $user = App\Models\User::first();
                 $user && Auth::login($user);

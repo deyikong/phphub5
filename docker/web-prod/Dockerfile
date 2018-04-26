@@ -1,4 +1,4 @@
-# deyikong/web-prod:2018-04-23
+# deyikon/web-prod:2018-04-23
 FROM deyikong/web:2018-04-23
 
 # supervisord needs to be started by the root user

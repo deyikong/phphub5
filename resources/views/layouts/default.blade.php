@@ -104,7 +104,7 @@ ______                            _              _                              
 
 	    @yield('scripts')
 
-        @if (App::environment() == 'production')
+        @if (env('APP_ENV') == 'production')
 		<script>
           ga('create', '{{ getenv('GA_Tracking_ID') }}', 'auto');
           ga('send', 'pageview');

@@ -45,7 +45,7 @@ class BaseCommand extends Command
     public function productionCheckHint($message = '')
     {
         $message = $message ?: 'This is a "very dangerous" operation';
-        if (App::environment('production')
+        if (env('APP_ENV') == 'production'
             && !$this->option('force')
             && !$this->confirm('Your are in「Production」environment, '.$message.'! Are you sure you want to do this? [y|N]')
         ) {

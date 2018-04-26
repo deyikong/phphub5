@@ -1,4 +1,4 @@
-emojify.setConfig({img_dir : Config.cdnDomain + 'assets/images/emoji'});
+emojify.setConfig({img_dir : Config.cdnDomain + '/assets/images/emoji'});
 
 emojify.run();
 

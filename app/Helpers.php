@@ -2,7 +2,7 @@
 // 如：db:seed 或者 清空数据库命令的地方调用
 function insanity_check()
 {
-    if (App::environment('production')) {
+    if (env('APP_ENV') == 'production') {
         exit('别傻了? 这是线上环境呀。');
     }
 }

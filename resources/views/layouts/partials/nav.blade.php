@@ -10,7 +10,7 @@
         </button>
 
       <a href="/" class="navbar-brand">
-          <img src="{{ cdn('assets/images/logo4.png') }}" alt="Laravel China" />
+          <img src="{{ cdn('/assets/images/logo4.png') }}" alt="Laravel China" />
       </a>
     </div>
 
