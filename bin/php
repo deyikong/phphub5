@@ -22,7 +22,7 @@ docker run \
        -v ~/.composer:/home/user/.composer \
        -w "$ROOT" \
        --net ${PROJECT_NAME}_default \
-       --link web:localhost:81 \
+       --link web:forum.local \
        -p 4343:4343 \
-       --link datastore:ds.raven.local \
+       --link datastore:ds.forum.local \
        $PHP_IMAGE php "${ARGS[@]}"

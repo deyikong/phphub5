@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # export CLOUD_HOST=us.gcr.io
-export CLOUD_ACCOUNT=chinese_forum
+export CLOUD_ACCOUNT=forum
 
 #export PHP_HOST=$CLOUD_HOST
 export PHP_ACCOUNT=deyikong
@@ -19,7 +19,7 @@ export PHP_DEBUG_IMAGE=${PHP_DEBUG_ACCOUNT}/${PHP_DEBUG_REPO}:${PHP_DEBUG_TAG}
 
 export WEB_ACCOUNT=$PHP_ACCOUNT
 export WEB_REPO=web
-export WEB_TAG=2018-04-25
+export WEB_TAG=2018-04-27
 export WEB_IMAGE=${WEB_ACCOUNT}/${WEB_REPO}:${WEB_TAG}
 
 export MYSQL_REPO=mysql

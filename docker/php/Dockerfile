@@ -1,4 +1,4 @@
-# deyikong/php:2018-04-23
+# deyikong/php:2018-04-27
 FROM chekote/php:7.1.16-laravel5.6
 
 RUN apt-get update && \
@@ -19,7 +19,8 @@ RUN apt-get update && \
         # memcache requirements
         memcached php${PHP_VERSION}-memcached \
         # Intrepreter for the PostScript language and for PDF
-        ghostscript && \
+        ghostscript \
+        php7.1-curl && \
     # Cleanup
     apt-get remove -y && \
     apt-get autoremove -y && \

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-export PROJECT_NAME=chineseforum
+export PROJECT_NAME=forum
